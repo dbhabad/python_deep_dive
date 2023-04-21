@@ -1,0 +1,43 @@
+
+# start scapy 
+>scapy
+
+# sniff 10 packets
+>>>  res = sniff(count=10)
+
+# see the result
+>>> res.show()
+
+## see specific packet info
+>>> res[3].show()
+
+### sniff only icmp packets
+>>> sniff(count=10, filter='icmp')
+
+--- now open cmd and ping any two websites
+
+>>>> res.show()
+
+>>> res[3].show()
+
+>>> res[4].show()
+
+######### creating packets and sending it
+# prep packet
+>>> pkt = Ether()/IP(dst='google.com')/ICMP()/'hello there'
+
+# send packet
+>>> sendp(pkt)
+
+>>> pkt.show()
+
+########## sending packet and tracking it
+# prep packet
+>>> pkt = IP(dst='google.com')/ICMP()/'welcome!!'
+
+# send and recieve packet
+>>> sr1(pkt)
+
+>>> pkt.show()
+
+>>> pkt.summary()
